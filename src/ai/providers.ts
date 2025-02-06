@@ -1,31 +1,35 @@
-import { createOpenAI } from '@ai-sdk/openai';
+import { LlamaModel, LlamaContext, LlamaChatSession } from 'node-llama-cpp';
 import { getEncoding } from 'js-tiktoken';
 
 import { RecursiveCharacterTextSplitter } from './text-splitter';
 
+// Path to the DeepSeek model - you'll need to adjust this
+const MODEL_PATH = '/path/to/deepseek-r1-1.5b-chat.gguf';
+
+// Create a local DeepSeek model
+const deepSeekModel = await createDeepSeekModel();
+
 // Providers
+async function createDeepSeekModel() {
+  const model = new LlamaModel({
+    modelPath: MODEL_PATH,
+    contextSize: 4096,
+    gpuLayers: 32, // Use GPU layers if available
+  });
 
-const openai = createOpenAI({
-  apiKey: process.env.OPENAI_KEY!,
-});
+  const context = new LlamaContext({ model });
+  return new LlamaChatSession({ context });
+}
 
-// Models
-
-export const gpt4Model = openai('gpt-4o', {
-  structuredOutputs: true,
-});
-export const gpt4MiniModel = openai('gpt-4o-mini', {
-  structuredOutputs: true,
-});
-export const o3MiniModel = openai('o3-mini', {
-  reasoningEffort: 'medium',
-  structuredOutputs: true,
-});
+// Models - adapt to DeepSeek's capabilities
+export const gpt4Model = deepSeekModel;
+export const gpt4MiniModel = deepSeekModel;
+export const o3MiniModel = deepSeekModel;
 
 const MinChunkSize = 140;
 const encoder = getEncoding('o200k_base');
 
-// trim prompt to maximum context size
+// Maintain the existing trimPrompt functionality
 export function trimPrompt(prompt: string, contextSize = 120_000) {
   if (!prompt) {
     return '';
@@ -37,7 +41,6 @@ export function trimPrompt(prompt: string, contextSize = 120_000) {
   }
 
   const overflowTokens = length - contextSize;
-  // on average it's 3 characters per token, so multiply by 3 to get a rough estimate of the number of characters
   const chunkSize = prompt.length - overflowTokens * 3;
   if (chunkSize < MinChunkSize) {
     return prompt.slice(0, MinChunkSize);
@@ -49,11 +52,9 @@ export function trimPrompt(prompt: string, contextSize = 120_000) {
   });
   const trimmedPrompt = splitter.splitText(prompt)[0] ?? '';
 
-  // last catch, there's a chance that the trimmed prompt is same length as the original prompt, due to how tokens are split & innerworkings of the splitter, handle this case by just doing a hard cut
   if (trimmedPrompt.length === prompt.length) {
     return trimPrompt(prompt.slice(0, chunkSize), contextSize);
   }
 
-  // recursively trim until the prompt is within the context size
   return trimPrompt(trimmedPrompt, contextSize);
 }
