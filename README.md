@@ -1,8 +1,9 @@
-# Open Deep Research
+<h1 align="center">Open (and Free) Deep Research</h1>
 
-An AI-powered research assistant that performs iterative, deep research on any topic by combining search engines, web scraping, and large language models. If you like this project, please consider starring it and giving me a follow on [X](https://x.com/dzhng).
+An AI-powered research assistant that performs iterative, deep research on any topic by combining search engines, web scraping, and large language models. If you like this project, please consider starring it :)
+Originally based on the project by @dzhng
 
-The goal of this repo is to provide the simplest implementation of a deep research agent - e.g. an agent that can refine its research direction overtime and deep dive into a topic. It'll always be kept at <500 LoC so it is easy to understand and build on top of.
+The goal of this repo is to provide the completely free and local implementation of a deep research agent - e.g. an agent that can refine its research direction overtime and deep dive into a topic. It'll always be kept at <500 LoC so it is easy to understand and build on top of.
 
 ## How It Works
 
@@ -75,9 +76,9 @@ flowchart TB
 ## Requirements
 
 - Node.js environment
-- API keys for:
-  - Firecrawl API (for web search and content extraction)
-  - OpenAI API (for o3 mini model)
+- Enough Hardware to run:
+  - Firecrawl
+  - DeepSeek R1 1.5B
 
 ## Setup
 
@@ -88,15 +89,7 @@ flowchart TB
 npm install
 ```
 
-3. Set up environment variables in a `.env.local` file:
-
-```bash
-FIRECRAWL_KEY="your_firecrawl_key"
-# If you want to use your self-hosted Firecrawl, add the following below:
-# FIRECRAWL_BASE_URL="http://localhost:3002"
-
-OPENAI_KEY="your_openai_key"
-```
+The LLM and Firecrawl is installed when the project runs for the first time automatically :)
 
 ## Usage
 
@@ -146,6 +139,3 @@ The final report will be saved as `output.md` in your working directory.
    - Includes all sources and references
    - Organizes information in a clear, readable format
 
-## License
-
-MIT License - feel free to use and modify as needed.
