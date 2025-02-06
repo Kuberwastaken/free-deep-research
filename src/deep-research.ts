@@ -1,10 +1,10 @@
 import FirecrawlApp, { SearchResponse } from '@mendable/firecrawl-js';
-import { generateObject } from 'ai';
+import { generateObject } from './ai/providers'; // Update this line
 import { compact } from 'lodash-es';
 import pLimit from 'p-limit';
 import { z } from 'zod';
 
-import { deepSeekModel, trimPrompt } from './ai/providers';
+import { deepSeekModel } from './ai/providers';
 import { systemPrompt } from './prompt';
 
 type ResearchResult = {

@@ -2,6 +2,7 @@
   "name": "open-deep-research",
   "version": "0.0.1",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "tsx": "tsx --env-file=.env.local",
@@ -21,12 +22,13 @@
   },
   "dependencies": {
     "@mendable/firecrawl-js": "^1.16.0",
+    "@xenova/transformers": "^2.17.2",
     "js-tiktoken": "^1.0.17",
     "lodash-es": "^4.17.21",
+    "node-llama-cpp": "^2.8.16",
     "p-limit": "^6.2.0",
-    "zod": "^3.24.1",
-    "node-llama-cpp": "^2.8.8",
-    "webgpu": "^0.1.16"
+    "webgpu": "^0.1.16",
+    "zod": "^3.24.1"
   },
   "engines": {
     "node": "22.x"
