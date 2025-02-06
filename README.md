@@ -1,5 +1,10 @@
 <h1 align="center">Open (and Free) Deep Research</h1>
 
+<p align="center">
+<img src="https://img.shields.io/static/v1?label=Kuberwastaken&message=free-deep-research&color=white&logo=github" alt="Kuberwastaken - free-deep-research">
+<img src="https://img.shields.io/badge/version-Alpha-white" alt="Version Alpha">
+</p>
+
 An AI-powered research assistant that performs iterative, deep research on any topic by combining search engines, web scraping, and large language models. If you like this project, please consider starring it :) and checking out my [LinkedIn](https://www.linkedin.com/in/kubermehta/)
 
 Originally based on the project by @dzhng
