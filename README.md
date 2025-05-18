@@ -2,7 +2,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/static/v1?label=Kuberwastaken&message=free-deep-research&color=white&logo=github" alt="Kuberwastaken - free-deep-research">
-<img src="https://img.shields.io/badge/version-Alpha-white" alt="Version Alpha">
+<img src="https://img.shields.io/badge/version-Beta-white" alt="Version Beta">
 </p>
 
 An AI-powered research assistant that performs iterative, deep research on any topic by combining search engines, web scraping, and large language models. If you like this project, please consider starring it :) and checking out my [LinkedIn](https://www.linkedin.com/in/kubermehta/)
